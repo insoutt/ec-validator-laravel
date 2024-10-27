@@ -16,10 +16,6 @@ class EcValidatorLaravelServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package
-            ->name('ec-validator-laravel')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_ec_validator_laravel_table')
-            ->hasCommand(EcValidatorLaravelCommand::class);
+            ->name('ec-validator-laravel');
     }
 }
