@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Insoutt\EcValidatorLaravel\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class EcValidatorLaravelCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'ec-validator-laravel';
 
     public $description = 'My command';
 
