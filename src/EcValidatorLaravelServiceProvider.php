@@ -13,6 +13,29 @@ use Insoutt\EcValidatorLaravel\Rules\Placa;
 
 class EcValidatorLaravelServiceProvider extends PackageServiceProvider
 {
+    private $rules = [
+        [
+            'name' => 'ec_cedula',
+            'class' => Cedula::class,
+            'params' => [],
+        ],
+        [
+            'name' => 'ec_placa',
+            'class' => Placa::class,
+            'params' => [EcValidator::VALIDATE_GENERAL],
+        ],
+        [
+            'name' => 'ec_placa_car',
+            'class' => Placa::class,
+            'params' => [EcValidator::VALIDATE_PLACA_CAR],
+        ],
+        [
+            'name' => 'ec_placa_moto',
+            'class' => Placa::class,
+            'params' => [EcValidator::VALIDATE_PLACA_MOTO],
+        ],
+    ];
+
     public function bootingPackage()
     {
         $this->loadRules();
@@ -31,21 +54,11 @@ class EcValidatorLaravelServiceProvider extends PackageServiceProvider
 
     public function loadRules()
     {
-        Validator::extend('ec_cedula', function ($attribute, $value, $parameters, $validator) {
-            return $this->customValidation(Cedula::class, $attribute, $value, $parameters, $validator);
-        });
-
-        Validator::extend('ec_placa', function ($attribute, $value, $parameters, $validator) {
-            return $this->customValidation(Placa::class, $attribute, $value, [EcValidator::VALIDATE_GENERAL], $validator);
-        });
-
-        Validator::extend('ec_placa_car', function ($attribute, $value, $parameters, $validator) {
-            return $this->customValidation(Placa::class, $attribute, $value, [EcValidator::VALIDATE_PLACA_CAR], $validator);
-        });
-
-        Validator::extend('ec_placa_moto', function ($attribute, $value, $parameters, $validator) {
-            return $this->customValidation(Placa::class, $attribute, $value, [EcValidator::VALIDATE_PLACA_MOTO], $validator);
-        });
+        foreach ($this->rules as $rule) {
+            Validator::extend($rule['name'], function ($attribute, $value, $parameters, $validator) use ($rule) {
+                return $this->customValidation($rule['class'], $attribute, $value, $rule['params'], $validator);
+            });
+        }
     }
 
     public function customValidation($classname, $attribute, $value, $parameters, $validator)
