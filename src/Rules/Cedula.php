@@ -14,7 +14,7 @@ class Cedula implements ValidationRule
         $validator = \Insoutt\EcValidator\EcValidator::make();
 
         if (! $validator->validateCedula($value)) {
-            $fail('El campo :attribute no es una cédula válida.');
+            $fail('validation.ec_cedula')->translate();
         }
     }
 }

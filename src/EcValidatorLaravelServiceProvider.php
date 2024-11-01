@@ -2,28 +2,23 @@
 
 namespace Insoutt\EcValidatorLaravel;
 
+use Illuminate\Support\Arr;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\InvokableValidationRule;
 use Insoutt\EcValidatorLaravel\Rules\Cedula;
 
 class EcValidatorLaravelServiceProvider extends PackageServiceProvider
 {
-    public function boot()
+    public function bootingPackage()
     {
-        Validator::extend('ec_cedula', function ($attribute, $value, $parameters, $validator) {
-            $rule = new Cedula();
-            $rule->validate($attribute, $value, $this->fail($validator, $attribute));
-
-            return !$validator->errors()->has($attribute);
-        });
+        $this->loadRules();
     }
 
     public function configurePackage(Package $package): void
     {
         /*
-         * This class is a Package Service Provider
-         *
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package
@@ -31,10 +26,20 @@ class EcValidatorLaravelServiceProvider extends PackageServiceProvider
             ->hasTranslations();
     }
 
-    private function fail($validator, $attribute)
+
+    public function loadRules()
     {
-        return function($message) use ($validator, $attribute) {
-            $validator->errors()->add($attribute, $message);
-        };
+        Validator::extend('ec_cedula', function ($attribute, $value, $parameters, $validator) {
+            $rule = InvokableValidationRule::make(new Cedula)
+                ->setValidator($validator);
+            $result = $rule->passes($attribute, $value);
+
+            if ($result == false) {
+                $validator->setCustomMessages([
+                    $attribute => Arr::first($rule->message()),
+                ]);
+            }
+            return $result;
+        });
     }
 }
