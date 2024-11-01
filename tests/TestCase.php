@@ -3,8 +3,8 @@
 namespace Insoutt\EcValidatorLaravel\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Orchestra\Testbench\TestCase as Orchestra;
 use Insoutt\EcValidatorLaravel\EcValidatorLaravelServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {

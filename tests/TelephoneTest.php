@@ -4,25 +4,25 @@ use Illuminate\Support\Facades\Validator;
 
 it('Invalid Telephone', function () {
     $validator = Validator::make(
-        ['myparam' => '09809'], 
+        ['myparam' => '09809'],
         ['myparam' => 'ec_telephone']
     );
     $this->assertFalse($validator->passes());
 
     $validator = Validator::make(
-        ['myparam' => '022334590'], 
+        ['myparam' => '022334590'],
         ['myparam' => 'ec_telephone_local']
     );
 
     $validator = Validator::make(
-        ['myparam' => '59342334590'], 
+        ['myparam' => '59342334590'],
         ['myparam' => 'ec_telephone_national']
     );
 
     $this->assertFalse($validator->passes());
 
     $validator = Validator::make(
-        ['myparam' => '022334590'], 
+        ['myparam' => '022334590'],
         ['myparam' => 'ec_telephone_international']
     );
 
@@ -31,21 +31,21 @@ it('Invalid Telephone', function () {
 
 it('Valid Telephone', function () {
     $validator = Validator::make(
-        ['myparam' => '2334590'], 
+        ['myparam' => '2334590'],
         ['myparam' => 'ec_telephone']
     );
 
     $this->assertTrue($validator->passes());
 
     $validator = Validator::make(
-        ['myparam' => '022334590'], 
+        ['myparam' => '022334590'],
         ['myparam' => 'ec_telephone']
     );
 
     $this->assertTrue($validator->passes());
 
     $validator = Validator::make(
-        ['myparam' => '59322334590'], 
+        ['myparam' => '59322334590'],
         ['myparam' => 'ec_telephone']
     );
 
@@ -54,7 +54,7 @@ it('Valid Telephone', function () {
 
 it('Valid local cellphone', function () {
     $validator = Validator::make(
-        ['myparam' => '2334590'], 
+        ['myparam' => '2334590'],
         ['myparam' => 'ec_telephone_local']
     );
 
@@ -63,7 +63,7 @@ it('Valid local cellphone', function () {
 
 it('Valid national cellphone', function () {
     $validator = Validator::make(
-        ['myparam' => '022334590'], 
+        ['myparam' => '022334590'],
         ['myparam' => 'ec_telephone_national']
     );
 
@@ -72,7 +72,7 @@ it('Valid national cellphone', function () {
 
 it('Valid international Telephone', function () {
     $validator = Validator::make(
-        ['myparam' => '59322334590'], 
+        ['myparam' => '59322334590'],
         ['myparam' => 'ec_telephone_international']
     );
 

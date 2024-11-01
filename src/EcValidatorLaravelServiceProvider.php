@@ -3,8 +3,6 @@
 namespace Insoutt\EcValidatorLaravel;
 
 use Illuminate\Support\Arr;
-use Spatie\LaravelPackageTools\Package;
-use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\InvokableValidationRule;
 use Insoutt\EcValidator\EcValidator;
@@ -13,6 +11,8 @@ use Insoutt\EcValidatorLaravel\Rules\Cellphone;
 use Insoutt\EcValidatorLaravel\Rules\Placa;
 use Insoutt\EcValidatorLaravel\Rules\Ruc;
 use Insoutt\EcValidatorLaravel\Rules\Telephone;
+use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class EcValidatorLaravelServiceProvider extends PackageServiceProvider
 {
@@ -94,7 +94,6 @@ class EcValidatorLaravelServiceProvider extends PackageServiceProvider
             ->hasTranslations();
     }
 
-
     public function loadRules()
     {
         foreach ($this->rules as $rule) {
@@ -114,6 +113,7 @@ class EcValidatorLaravelServiceProvider extends PackageServiceProvider
                 $attribute => Arr::first($rule->message()),
             ]);
         }
+
         return $result;
     }
 }

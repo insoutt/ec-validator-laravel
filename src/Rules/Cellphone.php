@@ -13,6 +13,7 @@ class Cellphone implements ValidationRule
     {
         $this->type = $type;
     }
+
     /**
      * Run the validation rule.
      */
@@ -21,7 +22,7 @@ class Cellphone implements ValidationRule
         $validator = \Insoutt\EcValidator\EcValidator::make();
 
         if (! $validator->validateCellphone($value, $this->type)) {
-            $fail('validation.' . $this->getName())->translate();
+            $fail('validation.'.$this->getName())->translate();
         }
     }
 
