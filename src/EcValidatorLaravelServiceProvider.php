@@ -12,6 +12,7 @@ use Insoutt\EcValidatorLaravel\Rules\Cedula;
 use Insoutt\EcValidatorLaravel\Rules\Cellphone;
 use Insoutt\EcValidatorLaravel\Rules\Placa;
 use Insoutt\EcValidatorLaravel\Rules\Ruc;
+use Insoutt\EcValidatorLaravel\Rules\Telephone;
 
 class EcValidatorLaravelServiceProvider extends PackageServiceProvider
 {
@@ -54,6 +55,26 @@ class EcValidatorLaravelServiceProvider extends PackageServiceProvider
         [
             'name' => 'ec_cellphone_with_code',
             'class' => Cellphone::class,
+            'params' => [EcValidator::VALIDATE_INTERNATIONAL],
+        ],
+        [
+            'name' => 'ec_telephone',
+            'class' => Telephone::class,
+            'params' => [EcValidator::VALIDATE_GENERAL],
+        ],
+        [
+            'name' => 'ec_telephone_local',
+            'class' => Telephone::class,
+            'params' => [EcValidator::VALIDATE_LOCAL],
+        ],
+        [
+            'name' => 'ec_telephone_national',
+            'class' => Telephone::class,
+            'params' => [EcValidator::VALIDATE_NATIONAL],
+        ],
+        [
+            'name' => 'ec_telephone_international',
+            'class' => Telephone::class,
             'params' => [EcValidator::VALIDATE_INTERNATIONAL],
         ],
     ];
