@@ -40,16 +40,12 @@
     },
     "scripts": {
         "post-autoload-dump": "@composer run prepare",
-        "clear": "@php vendor/bin/testbench package:purge-ec-validator-laravel --ansi",
-        "prepare": "@php vendor/bin/testbench package:discover --ansi",
         "build": [
-            "@composer run prepare",
-            "@php vendor/bin/testbench workbench:build --ansi"
+            "@composer run prepare"
         ],
         "start": [
             "Composer\\Config::disableProcessTimeout",
-            "@composer run build",
-            "@php vendor/bin/testbench serve"
+            "@composer run build"
         ],
         "analyse": "vendor/bin/phpstan analyse",
         "test": "vendor/bin/phpunit",
