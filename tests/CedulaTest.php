@@ -1,21 +1,25 @@
 <?php
 
 use Illuminate\Support\Facades\Validator;
+use Insoutt\EcValidatorLaravel\Tests\TestCase;
 
-it('Invalid Cedula', function () {
-    /** @var \TestCase\TestCase $this */
-    $validator = Validator::make(
-        ['myparam' => '1400724651'],
-        ['myparam' => 'ec_cedula']
-    );
-    $this->assertFalse($validator->passes());
-});
+class CedulaTest extends TestCase
+{
+    public function test_invalid_cedula()
+    {
+        $validator = Validator::make(
+            ['myparam' => '1400724651'],
+            ['myparam' => 'ec_cedula']
+        );
+        $this->assertFalse($validator->passes());
+    }
 
-it('Valid Cedula', function () {
-    /** @var \TestCase\TestCase $this */
-    $validator = Validator::make(
-        ['myparam' => '1400724652'],
-        ['myparam' => 'ec_cedula']
-    );
-    $this->assertTrue($validator->passes());
-});
+    public function test_valid_cedula()
+    {
+        $validator = Validator::make(
+            ['myparam' => '1400724652'],
+            ['myparam' => 'ec_cedula']
+        );
+        $this->assertTrue($validator->passes());
+    }
+}
