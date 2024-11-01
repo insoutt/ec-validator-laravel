@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\InvokableValidationRule;
 use Insoutt\EcValidator\EcValidator;
 use Insoutt\EcValidatorLaravel\Rules\Cedula;
+use Insoutt\EcValidatorLaravel\Rules\Cellphone;
 use Insoutt\EcValidatorLaravel\Rules\Placa;
 use Insoutt\EcValidatorLaravel\Rules\Ruc;
 
@@ -39,6 +40,21 @@ class EcValidatorLaravelServiceProvider extends PackageServiceProvider
             'name' => 'ec_placa_moto',
             'class' => Placa::class,
             'params' => [EcValidator::VALIDATE_PLACA_MOTO],
+        ],
+        [
+            'name' => 'ec_cellphone',
+            'class' => Cellphone::class,
+            'params' => [EcValidator::VALIDATE_GENERAL],
+        ],
+        [
+            'name' => 'ec_cellphone_national',
+            'class' => Cellphone::class,
+            'params' => [EcValidator::VALIDATE_NATIONAL],
+        ],
+        [
+            'name' => 'ec_cellphone_with_code',
+            'class' => Cellphone::class,
+            'params' => [EcValidator::VALIDATE_INTERNATIONAL],
         ],
     ];
 
