@@ -11,7 +11,7 @@ class RucTest extends TestCase
             ['myparam' => '3791248678001'],
             ['myparam' => 'ec_ruc']
         );
-        $this->assertFalse($validator->passes());   
+        $this->assertFalse($validator->passes());
     }
 
     public function test_valid_ruc()

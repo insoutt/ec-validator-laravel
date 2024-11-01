@@ -12,24 +12,24 @@ class TelephoneTest extends TestCase
             ['myparam' => 'ec_telephone']
         );
         $this->assertFalse($validator->passes());
-    
+
         $validator = Validator::make(
             ['myparam' => '022334590'],
             ['myparam' => 'ec_telephone_local']
         );
-    
+
         $validator = Validator::make(
             ['myparam' => '59342334590'],
             ['myparam' => 'ec_telephone_national']
         );
-    
+
         $this->assertFalse($validator->passes());
-    
+
         $validator = Validator::make(
             ['myparam' => '022334590'],
             ['myparam' => 'ec_telephone_international']
         );
-    
+
         $this->assertFalse($validator->passes());
     }
 
@@ -39,22 +39,22 @@ class TelephoneTest extends TestCase
             ['myparam' => '2334590'],
             ['myparam' => 'ec_telephone']
         );
-    
+
         $this->assertTrue($validator->passes());
-    
+
         $validator = Validator::make(
             ['myparam' => '022334590'],
             ['myparam' => 'ec_telephone']
         );
-    
+
         $this->assertTrue($validator->passes());
-    
+
         $validator = Validator::make(
             ['myparam' => '59322334590'],
             ['myparam' => 'ec_telephone']
         );
-    
-        $this->assertTrue($validator->passes());   
+
+        $this->assertTrue($validator->passes());
     }
 
     public function test_valid_local_telephone()
@@ -63,7 +63,7 @@ class TelephoneTest extends TestCase
             ['myparam' => '2334590'],
             ['myparam' => 'ec_telephone_local']
         );
-    
+
         $this->assertTrue($validator->passes());
     }
 
@@ -73,7 +73,7 @@ class TelephoneTest extends TestCase
             ['myparam' => '022334590'],
             ['myparam' => 'ec_telephone_national']
         );
-    
+
         $this->assertTrue($validator->passes());
     }
 
@@ -83,7 +83,7 @@ class TelephoneTest extends TestCase
             ['myparam' => '59322334590'],
             ['myparam' => 'ec_telephone_international']
         );
-    
+
         $this->assertTrue($validator->passes());
     }
 }
