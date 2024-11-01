@@ -30,11 +30,11 @@ jobs:
             testbench: 8.*
             carbon: ^2.63
           - laravel: 9.*
-            phpunit: ^10.5
+            phpunit: ^9.5
             testbench: 7.*
             carbon: ^2.63
           - laravel: 8.*
-            phpunit: ^10.5
+            phpunit: ^9.5
             testbench: 6.*
             carbon: ^2.63
           - laravel: 7.*
