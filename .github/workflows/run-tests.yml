@@ -22,11 +22,9 @@ jobs:
         stability: [prefer-lowest, prefer-stable]
         include:
           - laravel: 11.*
-            phpunit: ^11.0
             testbench: 9.*
             carbon: ^2.63
           - laravel: 10.*
-            phpunit: ^10.5
             testbench: 8.*
             carbon: ^2.63
 
@@ -50,7 +48,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" "phpunit/phpunit:${{ matrix.phpunit }}" "nesbot/carbon:${{ matrix.os == 'windows-latest' && '^^^' || '' }}${{ matrix.carbon }}" --no-interaction --no-update
+          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" "nesbot/carbon:${{ matrix.os == 'windows-latest' && '^^^' || '' }}${{ matrix.carbon }}" --no-interaction --no-update
           composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
       - name: List Installed Dependencies
