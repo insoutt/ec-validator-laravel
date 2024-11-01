@@ -10,6 +10,7 @@ use Illuminate\Validation\InvokableValidationRule;
 use Insoutt\EcValidator\EcValidator;
 use Insoutt\EcValidatorLaravel\Rules\Cedula;
 use Insoutt\EcValidatorLaravel\Rules\Placa;
+use Insoutt\EcValidatorLaravel\Rules\Ruc;
 
 class EcValidatorLaravelServiceProvider extends PackageServiceProvider
 {
@@ -17,6 +18,11 @@ class EcValidatorLaravelServiceProvider extends PackageServiceProvider
         [
             'name' => 'ec_cedula',
             'class' => Cedula::class,
+            'params' => [],
+        ],
+        [
+            'name' => 'ec_ruc',
+            'class' => Ruc::class,
             'params' => [],
         ],
         [
