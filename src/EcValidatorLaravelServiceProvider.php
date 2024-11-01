@@ -30,16 +30,20 @@ class EcValidatorLaravelServiceProvider extends PackageServiceProvider
     public function loadRules()
     {
         Validator::extend('ec_cedula', function ($attribute, $value, $parameters, $validator) {
-            $rule = InvokableValidationRule::make(new Cedula)
-                ->setValidator($validator);
-            $result = $rule->passes($attribute, $value);
-
-            if ($result == false) {
-                $validator->setCustomMessages([
-                    $attribute => Arr::first($rule->message()),
-                ]);
-            }
-            return $result;
+            return $this->customValidation(Cedula::class, $attribute, $value, $parameters, $validator);
         });
+    }
+
+    public function customValidation($classname, $attribute, $value, $parameters, $validator)
+    {
+        $rule = InvokableValidationRule::make(new $classname(...$parameters))->setValidator($validator);
+        $result = $rule->passes($attribute, $value);
+
+        if ($result == false) {
+            $validator->setCustomMessages([
+                $attribute => Arr::first($rule->message()),
+            ]);
+        }
+        return $result;
     }
 }
