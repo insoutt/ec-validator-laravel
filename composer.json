@@ -17,8 +17,9 @@
     ],
     "require": {
         "php": "^8.2",
-        "spatie/laravel-package-tools": "^1.16",
-        "illuminate/contracts": "^10.0||^11.0"
+        "illuminate/contracts": "^10.0||^11.0",
+        "insoutt/ec-validator": "^1.1",
+        "spatie/laravel-package-tools": "^1.16"
     },
     "require-dev": {
         "laravel/pint": "^1.14",
@@ -30,8 +31,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Insoutt\\EcValidatorLaravel\\": "src/",
-            "Insoutt\\EcValidatorLaravel\\Database\\Factories\\": "database/factories/"
+            "Insoutt\\EcValidatorLaravel\\": "src/"
         }
     },
     "autoload-dev": {
@@ -71,7 +71,7 @@
                 "Insoutt\\EcValidatorLaravel\\EcValidatorLaravelServiceProvider"
             ],
             "aliases": {
-                "EcValidatorLaravel": "Insoutt\\EcValidatorLaravel\\Facades\\EcValidatorLaravel"
+                "EcValidator": "Insoutt\\EcValidatorLaravel\\Facades\\EcValidatorLaravel"
             }
         }
     },

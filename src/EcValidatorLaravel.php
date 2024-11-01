@@ -2,4 +2,7 @@
 
 namespace Insoutt\EcValidatorLaravel;
 
-class EcValidatorLaravel {}
+class EcValidatorLaravel 
+{
+    
+}
