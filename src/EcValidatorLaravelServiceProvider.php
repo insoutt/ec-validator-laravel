@@ -7,7 +7,9 @@ use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\InvokableValidationRule;
+use Insoutt\EcValidator\EcValidator;
 use Insoutt\EcValidatorLaravel\Rules\Cedula;
+use Insoutt\EcValidatorLaravel\Rules\Placa;
 
 class EcValidatorLaravelServiceProvider extends PackageServiceProvider
 {
@@ -31,6 +33,18 @@ class EcValidatorLaravelServiceProvider extends PackageServiceProvider
     {
         Validator::extend('ec_cedula', function ($attribute, $value, $parameters, $validator) {
             return $this->customValidation(Cedula::class, $attribute, $value, $parameters, $validator);
+        });
+
+        Validator::extend('ec_placa', function ($attribute, $value, $parameters, $validator) {
+            return $this->customValidation(Placa::class, $attribute, $value, [EcValidator::VALIDATE_GENERAL], $validator);
+        });
+
+        Validator::extend('ec_placa_car', function ($attribute, $value, $parameters, $validator) {
+            return $this->customValidation(Placa::class, $attribute, $value, [EcValidator::VALIDATE_PLACA_CAR], $validator);
+        });
+
+        Validator::extend('ec_placa_moto', function ($attribute, $value, $parameters, $validator) {
+            return $this->customValidation(Placa::class, $attribute, $value, [EcValidator::VALIDATE_PLACA_MOTO], $validator);
         });
     }
 
