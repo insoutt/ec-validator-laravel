@@ -11,7 +11,6 @@ use Insoutt\EcValidatorLaravel\Rules\Cellphone;
 use Insoutt\EcValidatorLaravel\Rules\Placa;
 use Insoutt\EcValidatorLaravel\Rules\Ruc;
 use Insoutt\EcValidatorLaravel\Rules\Telephone;
-use Insoutt\EcValidatorLaravel\Services\InvokableValidationRule as ServicesInvokableValidationRule;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -106,12 +105,7 @@ class EcValidatorLaravelServiceProvider extends PackageServiceProvider
 
     public function customValidation($classname, $attribute, $value, $parameters, $validator)
     {
-        $invokable = InvokableValidationRule::class;
-        if (app()->version_compare(app()->version(), '10.0', '<')) {
-            $invokable = ServicesInvokableValidationRule::class;
-        }
-
-        $rule = $invokable::make(new $classname(...$parameters))->setValidator($validator);
+        $rule = InvokableValidationRule::make(new $classname(...$parameters))->setValidator($validator);
         $result = $rule->passes($attribute, $value);
 
         if ($result == false) {
